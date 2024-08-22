@@ -14,11 +14,13 @@
     "@react-google-maps/api": "^2.19.3",
     "@types/react-geocode": "^0.2.4",
     "graphql": "^16.9.0",
+    "lucide-react": "^0.429.0",
     "next": "14.2.5",
     "primereact": "^10.8.2",
     "react": "^18",
     "react-dom": "^18",
     "react-geocode": "^1.0.0-alpha.1",
+    "tailwind-merge": "^2.5.2",
     "zen-observable": "^0.10.0"
   },
   "devDependencies": {

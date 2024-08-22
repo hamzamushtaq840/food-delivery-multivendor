@@ -1,23 +1,16 @@
 'use client';
-import { GETCONFIGURATION, RESTAURANTS } from '@/apollo/queries';
+import { GETCONFIGURATION } from '@/apollo/queries';
 import Maps from '@/components/maps/Maps'; // This should work as Maps is a default export
-import { MapProvider } from '@/provider/MapsProvider'; // This should work as MapProvider is a named export
 import useLocation from '@/hooks/useLocation';
 import { useSuspenseQuery } from '@apollo/client';
 import { useEffect } from 'react';
 
 export default function Home() {
-  const { getCurrentLocation } = useLocation();
+  const { getCurrentLocation, location } = useLocation();
+  console.log(location);
 
   useEffect(() => {
-    const locationCallback = (error: any, data: any) => {
-      if (error) {
-        console.log(error);
-        return;
-      }
-      console.log(data);
-    };
-    getCurrentLocation(locationCallback);
+    getCurrentLocation();
   }, []);
 
   const { data } = useSuspenseQuery(GETCONFIGURATION, {
@@ -28,9 +21,7 @@ export default function Home() {
 
   return (
     <main>
-      <MapProvider>
-        <Maps />
-      </MapProvider>
+      <Maps />
     </main>
   );
 }
