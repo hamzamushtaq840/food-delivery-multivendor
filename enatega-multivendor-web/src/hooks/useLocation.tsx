@@ -1,39 +1,41 @@
-import { useState, useEffect } from 'react'
+import { LatLng, LocationCallback } from '@/types'
+import { fromLatLng, setKey } from 'react-geocode'
 
-interface Location {
-  latitude: number | null
-  longitude: number | null
-}
+export default function useLocation() {
+  setKey('AIzaSyCcm7_Wd7uvmC9YnYLu2JHGWPt6z1MaL1E')
 
-interface GeolocationError {
-  message: string
-}
-
-export const useLocation = () => {
-  const [location, setLocation] = useState<Location>({ latitude: null, longitude: null })
-  const [error, setError] = useState<string | null>(null)
-
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position: GeolocationPosition) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          })
-        },
-        (err: GeolocationPositionError) => {
-          setError(err.message)
-        }
-      )
-    } else {
-      setError('Geolocation is not supported by this browser.')
+  const latLngToGeoString = async ({ latitude, longitude }: LatLng): Promise<string> => {
+    try {
+      const location = await fromLatLng(latitude, longitude)
+      return location.results[0].formatted_address
+    } catch (error) {
+      throw new Error('Failed to fetch address')
     }
   }
 
-  useEffect(() => {
-    getLocation() // Get location at the start of the app
-  }, [])
+  const getCurrentLocation = (callback: LocationCallback): void => {
+    navigator.geolocation.getCurrentPosition(
+      async ({ coords: { latitude, longitude } }) => {
+        try {
+          const location = await fromLatLng(latitude, longitude)
+          callback(null, {
+            latitude,
+            longitude,
+            currentAddress: location.results[0].formatted_address
+          })
+        } catch (error) {
+          callback(error instanceof Error ? error.message : 'An unknown error occurred')
+        }
+      },
+      ({ message }) => {
+        callback(message)
+        console.log(message)
+      }
+    )
+  }
 
-  return { location, error, getLocation }
+  return {
+    getCurrentLocation,
+    latLngToGeoString
+  }
 }
