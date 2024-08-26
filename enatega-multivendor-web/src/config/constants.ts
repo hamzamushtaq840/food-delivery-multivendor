@@ -1,5 +1,4 @@
 //fetched from getConfiguration query
-//Using this as can can't push .env to github
 import { Libraries } from '@react-google-maps/api';
 
 //TODO: remove it after the task is checked
