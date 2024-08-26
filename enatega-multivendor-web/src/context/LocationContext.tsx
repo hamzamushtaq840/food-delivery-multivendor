@@ -1,12 +1,11 @@
 import { GOOGLE_MAP_API } from '@/config/constants';
 import { LatLng, LocationContextType } from '@/types';
-import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import React, { createContext, ReactNode, useState } from 'react';
 import { fromLatLng, setKey } from 'react-geocode';
 
 export const LocationContext = createContext<LocationContextType | undefined>(undefined);
 
 export const LocationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Initialize state from sessionStorage
   const [location, setLocation] = useState<{
     latitude: number;
     longitude: number;
@@ -30,7 +29,6 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({ children }
   const getCurrentLocation = (
     callback: (location: { latitude: number; longitude: number; currentAddress: string }) => void,
   ): void => {
-    console.log('i ran');
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async ({ coords: { latitude, longitude } }) => {
@@ -43,7 +41,7 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({ children }
             };
             setLocation(newLocation);
             sessionStorage.setItem('userLocation', JSON.stringify(newLocation));
-            callback(newLocation); // Invoke the callback with the location data
+            callback(newLocation);
           } catch (error) {
             console.error('Error fetching address:', error);
           }
