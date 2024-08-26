@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="bg-cardBg ml-[9.896vw] mt-14 flex justify-between rounded-bl-[80px] rounded-tl-[80px] sm:flex-col sm:gap-12 sm:p-12 md:flex-col md:gap-12 md:p-12">
+    <div className="ml-[9.896vw] mt-14 flex justify-between rounded-bl-[80px] rounded-tl-[80px] bg-cardBg sm:flex-col sm:gap-12 sm:p-12 md:flex-col md:gap-12 md:p-12">
       <div className="flex w-[18.555vw] flex-col gap-3 rounded-[80px] bg-black p-12 sm:w-full md:w-full">
-        <h1 className="text-textGreen text-center text-3xl font-bold">Enatega</h1>
+        <h1 className="text-center text-3xl font-bold text-textGreen">Enatega</h1>
         <p className="text-center leading-6 text-white">
           Enatega is an open-source delivery management platform for the future. We prioritize
           innovation, flexibility, and affordability, and offer a scalable, customizable solution

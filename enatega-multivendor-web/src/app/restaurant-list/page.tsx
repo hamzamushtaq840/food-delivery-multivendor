@@ -21,7 +21,6 @@ const Page = () => {
 
   const { loading, data } = useQuery<NearByRestaurantsData>(RESTAURANTS, {
     variables,
-    skip: latitude === null || longitude === null,
   });
 
   return (
@@ -30,7 +29,7 @@ const Page = () => {
       {loading ? (
         <CardSkeleton />
       ) : (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 sm:grid-cols-1 md:grid-cols-2">
           {data?.nearByRestaurants.restaurants.map((restaurant) => (
             <Card key={restaurant._id} name={restaurant.name} image={restaurant.image} />
           ))}

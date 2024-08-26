@@ -8,7 +8,7 @@ const CurrentLocation = () => {
   return (
     <div className="flex items-center justify-center gap-2 sm:hidden md:hidden">
       <MapPin className="h-5 w-5" />
-      <span className="">{location?.currentAddress.slice(0, 40) ?? 'No location'}</span>
+      <span className="">{location?.currentAddress.slice(0, 40) ?? 'No location found'}</span>
     </div>
   );
 };

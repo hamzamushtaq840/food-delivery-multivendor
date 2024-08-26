@@ -10,10 +10,11 @@ const App = () => {
         alt={'Fruits'}
         height={869}
         width={522}
+        priority
         className={'left-0 top-0'}
       />
-      <div className="bg-cardBg absolute bottom-[119px] left-[11.849vw] flex w-[55.469vw] gap-2 rounded-[40px] px-10 pb-9 pt-20 sm:bottom-0 sm:w-[70vw] sm:flex-col sm:px-2 sm:pb-7 md:bottom-0 md:w-[70vw] md:flex-col md:pb-7 lg:bottom-0 lg:flex-col">
-        <h1 className="absolute -left-[30px] -top-[130px] z-30 text-[150px] font-medium text-black opacity-25 mix-blend-normal sm:-top-[80px] sm:text-9xl">
+      <div className="absolute bottom-[119px] left-[11.849vw] flex w-[55.469vw] gap-2 rounded-[40px] bg-cardBg px-10 pb-9 pt-20 sm:-bottom-7 sm:w-[70vw] sm:flex-col sm:px-2 sm:pb-7 md:bottom-0 md:w-[70vw] md:flex-col md:pb-7 lg:bottom-0 lg:flex-col">
+        <h1 className="absolute -left-[30px] -top-[130px] z-30 text-[150px] font-medium text-black opacity-25 mix-blend-normal sm:-top-[60px] sm:text-9xl">
           APP
         </h1>
 

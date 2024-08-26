@@ -2,11 +2,11 @@ import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import { poppins } from '@/components/ui/fonts';
 import { ApolloProvider } from '@/provider/ApolloProvider';
+import LocationProvider from '@/provider/LocationProvider';
 import { MapProvider } from '@/provider/MapsProvider';
 import { PrimeReactProvider } from '@/provider/PrimeReactProvider';
 import type { Metadata } from 'next';
 import './globals.css';
-import LocationProvider from '@/provider/LocationProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

@@ -1,6 +1,6 @@
 import { GOOGLE_MAP_API } from '@/config/constants';
 import { LatLng, LocationContextType } from '@/types';
-import React, { createContext, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useState, useEffect } from 'react';
 import { fromLatLng, setKey } from 'react-geocode';
 
 export const LocationContext = createContext<LocationContextType | undefined>(undefined);
@@ -10,10 +10,16 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({ children }
     latitude: number;
     longitude: number;
     currentAddress: string;
-  } | null>(() => {
-    const storedLocation = sessionStorage.getItem('userLocation');
-    return storedLocation ? JSON.parse(storedLocation) : null;
-  });
+  } | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedLocation = sessionStorage.getItem('userLocation');
+      if (storedLocation) {
+        setLocation(JSON.parse(storedLocation));
+      }
+    }
+  }, []);
 
   setKey(GOOGLE_MAP_API);
 
@@ -40,7 +46,9 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({ children }
               currentAddress,
             };
             setLocation(newLocation);
-            sessionStorage.setItem('userLocation', JSON.stringify(newLocation));
+            if (typeof window !== 'undefined') {
+              sessionStorage.setItem('userLocation', JSON.stringify(newLocation));
+            }
             callback(newLocation);
           } catch (error) {
             console.error('Error fetching address:', error);
@@ -54,6 +62,7 @@ export const LocationProvider: React.FC<{ children: ReactNode }> = ({ children }
       console.error('Geolocation is not supported by this browser.');
     }
   };
+
   return (
     <LocationContext.Provider
       value={{ location, setLocation, latLngToGeoString, getCurrentLocation }}

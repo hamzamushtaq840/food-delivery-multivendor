@@ -1,11 +1,11 @@
 'use client';
+import useLocation from '@/hooks/useLocation';
+import { Prediction, SearchBarProps } from '@/types';
+import { LocateFixed } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import List from './List';
 import SearchInput from './SearchInput';
-import { LocateFixed } from 'lucide-react';
-import useLocation from '@/hooks/useLocation';
-import { Prediction, SearchBarProps } from '@/types';
 
 const autocompleteService = { current: null as google.maps.places.AutocompleteService | null };
 const placeDetailsService = { current: null as google.maps.places.PlacesService | null };
