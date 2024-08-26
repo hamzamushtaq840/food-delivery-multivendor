@@ -21,6 +21,7 @@
     "react-dom": "^18",
     "react-geocode": "^1.0.0-alpha.1",
     "tailwind-merge": "^2.5.2",
+    "use-debounce": "^10.0.3",
     "zen-observable": "^0.10.0"
   },
   "devDependencies": {

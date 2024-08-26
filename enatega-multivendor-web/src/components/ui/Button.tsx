@@ -36,7 +36,7 @@ const Button = ({
         customClass,
       )}
       onClick={onClick}
-    />
+    ></PrimeButton>
   );
 };
 
