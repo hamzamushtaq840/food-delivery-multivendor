@@ -17,7 +17,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onLocationSelect }) => {
   const [locationSelected, setLocationSelected] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { getCurrentLocation, location } = useLocation();
+  const { getCurrentLocation } = useLocation();
 
   const fetchPredictions = useDebouncedCallback((searchQuery: string) => {
     if (!autocompleteService.current || !searchQuery || locationSelected) return;
@@ -65,7 +65,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onLocationSelect }) => {
           callback(location.lat(), location.lng());
         } else {
           console.error('Place Details was not successful for the following reason:', status);
-          callback(NaN, NaN); // Handle the case when location is undefined
+          callback(NaN, NaN);
         }
       });
     }
@@ -74,7 +74,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onLocationSelect }) => {
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
     setSelectedIndex(-1);
-    setLocationSelected(false); // Allow suggestions again
+    setLocationSelected(false);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -89,11 +89,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onLocationSelect }) => {
         if (selectedIndex !== -1) {
           const selected = predictions[selectedIndex];
           fetchPlaceDetails(selected.place_id, (lat, lng) => {
-            setQuery(selected.description); // Set query to selected description
+            setQuery(selected.description);
             setSelectedIndex(-1);
             setPredictions([]);
-            setLocationSelected(true); // Set location selected
-            onLocationSelect(lat, lng, selected.description); // Pass the location to the parent
+            setLocationSelected(true);
+            onLocationSelect(lat, lng, selected.description);
           });
         }
         break;
@@ -102,11 +102,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onLocationSelect }) => {
 
   const handleClick = (prediction: Prediction) => {
     fetchPlaceDetails(prediction.place_id, (lat, lng) => {
-      setQuery(prediction.description); // Set query to selected description
+      setQuery(prediction.description);
       setSelectedIndex(-1);
       setPredictions([]);
-      setLocationSelected(true); // Set location selected
-      onLocationSelect(lat, lng, prediction.description); // Pass the location to the parent
+      setLocationSelected(true);
+      onLocationSelect(lat, lng, prediction.description);
     });
   };
 
