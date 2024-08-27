@@ -18,6 +18,7 @@ const config: Config = {
         cardBg: '#90EA93',
         textGreen: '#6FCF97',
         buttonBg: '#3C8F7C',
+        featuredGreen: '#3C8F7C',
       },
       screens: {
         sm: { min: '0px', max: '540px' },

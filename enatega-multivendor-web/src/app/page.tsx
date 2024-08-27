@@ -1,5 +1,6 @@
 'use client';
 import App from '@/components/app-section';
+import Features from '@/components/features';
 import Hero from '@/components/hero';
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <main>
       <Hero />
       <App />
+      <Features />
     </main>
   );
 }

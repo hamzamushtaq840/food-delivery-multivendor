@@ -29,8 +29,8 @@ const Footer = () => {
         <span className="text-xl font-bold">Follow Us</span>
 
         <div className="flex gap-3 sm:mt-6 md:mt-6">
-          {[1, 2, 3, 4, 5].map((v) => {
-            return <div className="h-10 w-10 rounded-full bg-black"></div>;
+          {[1, 2, 3, 4, 5].map((v,i) => {
+            return <div key={i} className="h-10 w-10 rounded-full bg-black"></div>;
           })}
         </div>
 
